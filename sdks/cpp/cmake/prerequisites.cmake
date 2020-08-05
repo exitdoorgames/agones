@@ -168,8 +168,8 @@ if (NOT ${gRPC_FOUND})
     endif()
 
     invoke_cmake_build(c-ares ${gRPC_SOURCE_DIR}/third_party/cares/cares
-        "-DCARES_STATIC=ON"
-        "-DCARES_SHARED=OFF"
+        "-DCARES_STATIC=OFF"
+        "-DCARES_SHARED=ON"
     )
     invoke_cmake_build(Protobuf ${gRPC_SOURCE_DIR}/third_party/protobuf/cmake
         "-DZLIB_ROOT=${zlib_DIR}"
