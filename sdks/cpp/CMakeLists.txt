@@ -63,7 +63,7 @@ project(agones VERSION ${AGONES_VERSION} HOMEPAGE_URL https://github.com/googlef
 # Options
 option(AGONES_FORCE_GRPC_VERSION "Build Agones C++ SDK only with supported gRPC version" ON)
 option(AGONES_BUILD_ONLY_PREREQUISITIES "Build only prerequisites of Agones" OFF)
-option(AGONES_ZLIB_STATIC "Use static version of ZLIB" ON)
+option(AGONES_ZLIB_STATIC "Use static version of ZLIB" OFF)
 option(AGONES_BUILD_THIRDPARTY_DEBUG "Build debug version of thirdparty libraries (MSVC only)" OFF)
 option(AGONES_CLANG_FORMAT "Apply clang-format (if found) as a pre-build step" OFF)
 set(AGONES_THIRDPARTY_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}" CACHE STRING "Path for installing third-party OpenSSL and gRPC, if they are not found with find_package")
@@ -126,7 +126,7 @@ else()
   add_definitions(-include ${GLOBAL_HEADER})
 endif()
 
-add_library(${PROJECT_NAME} STATIC ${ALL_FILES})
+add_library(${PROJECT_NAME} SHARED ${ALL_FILES})
 target_link_libraries(${PROJECT_NAME} PUBLIC protobuf::libprotobuf gRPC::grpc++_unsecure)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
